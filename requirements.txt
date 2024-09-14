@@ -1,4 +1,3 @@
-streamlit==1.20.0  
-matplotlib==3.7.1  # Updated version to match the compatibility
-pandas==2.0.3     # Adjusted for compatibility with Streamlit
-numpy==1.23.5     # Compatible version for the current Python version
+streamlit==1.20.0
+matplotlib==3.7.1
+pandas==1.5.3  # Adjust to a version compatible with Streamlit 1.20.0
