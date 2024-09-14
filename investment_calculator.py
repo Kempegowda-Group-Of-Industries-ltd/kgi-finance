@@ -1,14 +1,19 @@
 import streamlit as st
 
-def investment_growth_calculator(conversion_rate):
-    st.subheader("Investment Growth Calculator")
+def investment_growth():
+    st.header("Investment Growth Calculator")
 
-    principal = st.number_input("Initial Investment Amount", value=10000) * conversion_rate
-    annual_rate = st.slider("Annual Interest Rate (%)", min_value=0.0, max_value=20.0, value=5.0, step=0.1)
-    years = st.slider("Investment Duration (Years)", min_value=1, max_value=50, value=10)
-    
-    # Calculation
-    future_value = principal * (1 + annual_rate / 100) ** years
-    
-    # Output results
-    st.write(f"**Future Value**: {future_value/conversion_rate:.2f}")
+    # Input fields
+    initial_investment = st.number_input("Initial Investment ($)", min_value=0.0, format="%.2f")
+    annual_return = st.number_input("Annual Return Rate (%)", min_value=0.0, format="%.2f")
+    years = st.number_input("Number of Years", min_value=1, format="%d")
+
+    if st.button("Calculate"):
+        # Calculations
+        future_value = initial_investment * ((1 + annual_return / 100) ** years)
+        total_earned = future_value - initial_investment
+
+        # Display results
+        st.subheader("Results")
+        st.write(f"Future Value: ${future_value:,.2f}")
+        st.write(f"Total Earned: ${total_earned:,.2f}")
