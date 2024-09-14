@@ -7,7 +7,6 @@ from interest_payment_calculator import interest_payment_calculator
 from compound_interest_calculator import compound_interest_calculator
 from income_tax_calculator import income_tax_calculator
 from investment_calculator import investment_growth_calculator
-from currency_converter import currency_converter
 from amortization_calculator import amortization_calculator
 from budget_tracker import budget_tracker
 from inflation_calculator import inflation_calculator
@@ -16,9 +15,15 @@ from sales_tax_calculator import sales_tax_calculator
 from mortgage_payoff_calculator import mortgage_payoff_calculator
 from k401_calculator import k401_calculator
 
-# Title and description
-st.title("KGI Finance Simulators")
-st.write("Welcome to the KGI Finance Simulators! Use the tools below to calculate various financial metrics and manage your personal or business finances effectively.")
+st.title('Finance Calculators & Simulators')
+
+# Sidebar to choose calculator type
+app_mode = st.sidebar.selectbox("Choose the Calculator", 
+                                ["Loan Calculator", "Auto Loan", "Mortgage Loan", "Retirement Calculator", 
+                                 "Interest Payment", "Compound Interest", "Income Tax", 
+                                 "Investment Growth", "Amortization", "Budget Tracker", 
+                                 "Inflation Calculator", "Salary Calculator", "Sales Tax Calculator", 
+                                 "Mortgage Payoff", "401K Calculator"])
 
 # Global currency conversion settings
 st.sidebar.header("Currency Settings")
@@ -26,66 +31,37 @@ currencies = {"USD": 1, "INR": 82.0}  # Example conversion rates
 currency_choice = st.sidebar.selectbox("Select Currency", options=["USD", "INR"])
 conversion_rate = currencies[currency_choice]
 
-# Sidebar for navigation
-st.sidebar.header("Calculator Selection")
-calculator_choice = st.sidebar.selectbox(
-    "Choose a Calculator", 
-    ["Loan Calculator", "Auto Loan", "Mortgage Loan", "Retirement Calculator", "Interest Payment", 
-     "Compound Interest", "Income Tax", "Investment Growth", "Amortization", "Budget Tracker",
-     "Inflation Calculator", "Salary Calculator", "Sales Tax Calculator", "Mortgage Payoff",
-     "401K Calculator"]
-)
-
-# Function to display calculator based on user choice
-def display_calculator(choice, rate):
-    st.sidebar.markdown("### About")
-    st.sidebar.write("Use the selected calculator to perform detailed financial calculations.")
-    
-    if choice == "Loan Calculator":
-        st.header("Loan Calculator")
-        loan_calculator(rate)
-    elif choice == "Auto Loan":
-        st.header("Auto Loan Calculator")
-        auto_loan_calculator(rate)
-    elif choice == "Mortgage Loan":
-        st.header("Mortgage Loan Calculator")
-        mortgage_calculator(rate)
-    elif choice == "Retirement Calculator":
-        st.header("Retirement Calculator")
-        retirement_calculator(rate)
-    elif choice == "Interest Payment":
-        st.header("Interest Payment Calculator")
-        interest_payment_calculator(rate)
-    elif choice == "Compound Interest":
-        st.header("Compound Interest Calculator")
-        compound_interest_calculator(rate)
-    elif choice == "Income Tax":
-        st.header("Income Tax Calculator")
-        income_tax_calculator(rate)
-    elif choice == "Investment Growth":
-        st.header("Investment Growth Calculator")
-        investment_growth_calculator(rate)
-    elif choice == "Amortization":
-        st.header("Amortization Calculator")
-        amortization_calculator(rate)
-    elif choice == "Budget Tracker":
-        st.header("Budget Tracker")
-        budget_tracker(rate)
-    elif choice == "Inflation Calculator":
-        st.header("Inflation Calculator")
-        inflation_calculator(rate)
-    elif choice == "Salary Calculator":
-        st.header("Salary Calculator")
-        salary_calculator(rate)
-    elif choice == "Sales Tax Calculator":
-        st.header("Sales Tax Calculator")
-        sales_tax_calculator(rate)
-    elif choice == "Mortgage Payoff":
-        st.header("Mortgage Payoff Calculator")
-        mortgage_payoff_calculator(rate)
-    elif choice == "401K Calculator":
-        st.header("401K Calculator")
-        k401_calculator(rate)
+def display_calculator(app_mode, conversion_rate):
+    if app_mode == "Loan Calculator":
+        loan_calculator(conversion_rate)
+    elif app_mode == "Auto Loan":
+        auto_loan_calculator(conversion_rate)
+    elif app_mode == "Mortgage Loan":
+        mortgage_calculator(conversion_rate)
+    elif app_mode == "Retirement Calculator":
+        retirement_calculator(conversion_rate)
+    elif app_mode == "Interest Payment":
+        interest_payment_calculator(conversion_rate)
+    elif app_mode == "Compound Interest":
+        compound_interest_calculator(conversion_rate)
+    elif app_mode == "Income Tax":
+        income_tax_calculator(conversion_rate)
+    elif app_mode == "Investment Growth":
+        investment_growth_calculator(conversion_rate)
+    elif app_mode == "Amortization":
+        amortization_calculator(conversion_rate)
+    elif app_mode == "Budget Tracker":
+        budget_tracker(conversion_rate)
+    elif app_mode == "Inflation Calculator":
+        inflation_calculator(conversion_rate)
+    elif app_mode == "Salary Calculator":
+        salary_calculator(conversion_rate)
+    elif app_mode == "Sales Tax Calculator":
+        sales_tax_calculator(conversion_rate)
+    elif app_mode == "Mortgage Payoff":
+        mortgage_payoff_calculator(conversion_rate)
+    elif app_mode == "401K Calculator":
+        k401_calculator(conversion_rate)
 
 # Display the selected calculator
-display_calculator(calculator_choice, conversion_rate)
+display_calculator(app_mode, conversion_rate)
